@@ -20,4 +20,3 @@ if BMI >= 25:
     warunek = "Masz nadwagę. Powinieneś schudnąć"
 
 print(warunek)
-
