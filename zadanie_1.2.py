@@ -12,19 +12,19 @@ czas_naprawy = input("ile dni będzie trwała naprawa? ")
 
 dzien_odbioru = int(dzien_oddania) + int(czas_naprawy)
 
-if dzien_odbioru == 1 or 8:
+if dzien_odbioru == 1 or dzien_odbioru % 7 == 1:
     dzien_odbioru = "Poniedziałek"
-if dzien_odbioru == 2 or 9:
+if dzien_odbioru == 2 or dzien_odbioru % 7 == 2:
     dzien_odbioru = "Wtorek"
-if dzien_odbioru == 3 or 10:
+if dzien_odbioru == 3 or dzien_odbioru % 7 == 3:
     dzien_odbioru = "Środa"
-if dzien_odbioru == 4 or 11:
+if dzien_odbioru == 4 or dzien_odbioru % 7 == 4:
     dzien_odbioru = "Czwartek"
-if dzien_odbioru == 5 or 12:
+if dzien_odbioru == 5 or dzien_odbioru % 7 == 5:
     dzien_odbioru = "Piątek"
-if dzien_odbioru == 6 or 13:
+if dzien_odbioru == 6 or dzien_odbioru % 7 == 6:
     dzien_odbioru = "Sobota"
-if dzien_odbioru == 7 or 14:
+if dzien_odbioru == 7 or dzien_odbioru % 7 == 0:
     dzien_odbioru = "Niedziela"
 
 print(f"Dzień odbioru butów od szewca to: {dzien_odbioru}")

@@ -15,17 +15,17 @@ ilosc_nocy = int(input("Podaj ile spędzisz nocy w hotelu: "))
 
 if wiek < 18:
     cena_za_noc = 100
-if wiek >= 18 and wiek < 65 and ilosc_nocy == 1:
+elif wiek >= 18 and wiek < 65 and ilosc_nocy == 1:
     cena_za_noc = 200
-if wiek >= 18 and wiek < 65 and ilosc_nocy == 2 or 3 or 4:
+elif wiek >= 18 and wiek < 65 and ilosc_nocy > 1 and ilosc_nocy < 5:
     cena_za_noc = 180
-if wiek >= 18 and wiek < 65 and ilosc_nocy > 5:
+elif wiek >= 18 and wiek < 65 and ilosc_nocy > 5:
     cena_za_noc = 150
-if wiek >= 65 and ilosc_nocy == 1:
+elif wiek >= 65 and ilosc_nocy == 1:
     cena_za_noc = 0.9 * 200
-if wiek >= 65 and ilosc_nocy > 1 and ilosc_nocy < 5:
+elif wiek >= 65 and ilosc_nocy > 1 and ilosc_nocy < 5:
     cena_za_noc = 0.9 * 180
-if wiek >= 65 and ilosc_nocy >= 5:
+else:
     cena_za_noc = 0.9 * 150
 
 koszt_pobytu = float(cena_za_noc) * int(ilosc_nocy)

@@ -30,24 +30,22 @@ print(f"Koszt ziemniaków {koszt} PLN")
 # ile trzeba będzie zapłacić za te ziemniaki i banany razem. I niech program sprawdzi i powie, za co trzeba będzie zapłacić więcej
 # - za banany czy za ziemniaki.
 
-cena_ziemniakow = input("Podaj cenę ziemniaków: ")
-ilosc_kg_ziemniakow = input("Podaj ilość kg ziemniakow: ")
-cena_bananow = input("Podaj cenę bananów za kg: ")
-ilosc_kg_bananow = input("Podaj ilosc kg bananow: ")
+cena_ziemniakow = float(input("Podaj cenę ziemniaków: "))
+ilosc_kg_ziemniakow = float(input("Podaj ilość kg ziemniakow: "))
+cena_bananow = float(input("Podaj cenę bananów za kg: "))
+ilosc_kg_bananow = float(input("Podaj ilosc kg bananow: "))
 
-koszt_razem = float(cena_ziemniakow) * float(ilosc_kg_ziemniakow) + float(cena_bananow) * float(ilosc_kg_bananow)
+koszt_razem = cena_ziemniakow * ilosc_kg_ziemniakow + cena_bananow * ilosc_kg_bananow
 
 print(f"Koszt ziemniaków i bananów razem to: {koszt_razem} PLN")
 
-koszt_ziemniakow = float(cena_ziemniakow) * float(ilosc_kg_ziemniakow)
-koszt_bananow = float(cena_bananow) * float(ilosc_kg_bananow)
+koszt_ziemniakow = cena_ziemniakow * ilosc_kg_ziemniakow
+koszt_bananow = cena_bananow * ilosc_kg_bananow
 
-warunek_1 = koszt_ziemniakow > koszt_bananow
-warunek_2 = koszt_ziemniakow < koszt_bananow
 
-if warunek_1:
+if koszt_ziemniakow > koszt_bananow:
     print("Więcej trzeba zapłacić za ziemniaki")
-elif warunek_2:
+elif koszt_ziemniakow < koszt_bananow:
     print("Więcej trzeba zapłacić za banany")
 else:
     print("Za banany i za ziemniaki trzeba zapłącić tyle samo")
