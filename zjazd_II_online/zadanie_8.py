@@ -2,8 +2,8 @@
 # ona większa od 1 litra
 
 a = float(input("Podaj wymiar a (w cm): "))
-b = float(input("Podaj wymiar a (w cm): "))
-c = float(input("Podaj wymiar a (w cm): "))
+b = float(input("Podaj wymiar b (w cm): "))
+c = float(input("Podaj wymiar c (w cm): "))
 
 objetosc = a * b * c
 
