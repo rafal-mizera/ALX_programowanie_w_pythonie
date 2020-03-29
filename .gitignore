@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/zadania_dom/
+/zjazd_I_zadania/
+/zadania_dom/
