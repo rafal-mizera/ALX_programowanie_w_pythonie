@@ -2,6 +2,7 @@
 
 napis = input("Wpisz tekst: ")
 
+# rozwiazanie 1
 dict = {}
 
 for litera in napis:
@@ -9,5 +10,23 @@ for litera in napis:
         dict[litera] += 1
     else:
         dict[litera] = 1
+
+print(dict)
+
+# rozwiazanie 2
+
+for litera in napis:
+    dict[litera] = dict.get(litera, 0) + 1
+
+print(dict)
+
+# rozwiazanie 3
+
+from collections import defaultdict
+
+dict = defaultdict(int)
+
+for litera in napis:
+    dict[litera] += 1
 
 print(dict)
