@@ -24,17 +24,20 @@ while True:
                 suma += koszt
                 magazyn[produkt] = magazyn[produkt] - waga
     elif komenda == "m":
-        komenda2 = input("Co chcesz zrobić? [d - dodaj nowy produkt, s - zwiększ stan istniejącego produktu]")
+        komenda2 = input("Co chcesz zrobić? [d - dodaj nowy produkt, s - zwiększ stan istniejącego produktu]: ")
         if komenda2 == "d":
                 nowy = input("Wpisz nazwę: ")
                 nowy_ilość = input("Podaj ilość: ")
-                magazyn[nowy] = [nowy_ilość]
+                magazyn[nowy] = float(nowy_ilość)
+                cennik[nowy] = float(nowy_ilość)
         elif komenda2 == "s":
                 produkt = input("Co chcesz dodać do magazynu? ")
                 dostawa = input(f"Ile {produkt} chcesz dodać do magazynu: ")
                 magazyn[produkt] = magazyn[produkt] + dostawa
+                cennik = cennik[produkt] + dostawa
     else:
         print("Niezrozumiała komenda")
 
 print(f"Za dane produkty zapłacisz {suma:.2f} zł")
 print(magazyn)
+print(cennik)
