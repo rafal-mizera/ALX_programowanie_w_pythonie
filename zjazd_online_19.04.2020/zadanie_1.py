@@ -1,11 +1,8 @@
 def czy_jest_pierwsza(x):
-    for number in range(1,x):
+    for number in range(2,x):
         if x % number == 0:
-            print(False)
-            return
-            break
+            return False
         else:
-            print(True)
-            return
+            return True
 
-czy_jest_pierwsza(2)
+print(czy_jest_pierwsza(8))

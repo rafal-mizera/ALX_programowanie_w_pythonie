@@ -1,11 +1,8 @@
 
 counter = 0
 liczby = set()
-warunek = set()
+warunek = set(range(0,101,2))
 
-for i in range(101):
-    if i % 2 == 0:
-        warunek.add(i)
 
 while True:
     liczba = input("Podaj liczbę: ")
@@ -16,7 +13,10 @@ while True:
         counter += 1
         liczby.add(liczba)
 
-print(liczby & warunek)
+print(f"Wprowadzonych liczb było: {counter} ")
+
+print(f"Liczb spełniających warunek było: {len(liczby & warunek)}")
+
 
 
 
