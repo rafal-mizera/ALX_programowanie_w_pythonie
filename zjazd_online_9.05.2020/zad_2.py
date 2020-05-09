@@ -11,12 +11,12 @@ class Employee:
     def pay_salary(self):
         if self.registered_time <= 8:
             to_pay = self.registered_time * self.rate_per_hour
-            self.registered_time == 0
+            self.registered_time = 0
             return to_pay
 
-        elif self.registered_time > 8:
+        else:
             to_pay = (8 * self.rate_per_hour) +( self.registered_time - 8) * (2 * self.rate_per_hour)
-            self.registered_time == 0
+            self.registered_time = 0
             return to_pay
 
 
