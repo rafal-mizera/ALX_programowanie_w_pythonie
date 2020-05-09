@@ -11,6 +11,8 @@
 #-zbiory
 #Odp 3. Zaimplementuj funkcję zawierającą algorytm sortowanie przez wybieranie:
 
+
+
 # Odp 4.Masz słownik
 zrodla = {"a": 10, "b":30}
 #
