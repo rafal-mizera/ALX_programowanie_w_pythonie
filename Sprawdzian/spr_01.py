@@ -3,3 +3,10 @@
 # -tuple
 # -słowniki
 # - zbiory
+#Odp 2. Mutowalne są:
+# - listy
+# -słowniki
+# Niemutowalne:
+#-tuple
+#-zbiory
+
