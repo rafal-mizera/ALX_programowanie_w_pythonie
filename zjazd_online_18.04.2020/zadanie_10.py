@@ -30,3 +30,21 @@ for litera in napis:
     dict[litera] += 1
 
 print(dict)
+
+napisz program zliczający wielkie litery w napisie
+
+text = input("Wprowadź tekst: ")
+
+licznik = {}
+
+for x in text:
+    if x in licznik:
+        if x.isupper():
+            licznik[x] += 1
+    else:
+        if x.isupper():
+            licznik[x] = 1
+
+print(licznik)
+
+
