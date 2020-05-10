@@ -19,9 +19,18 @@ class Employee:
             self.registered_time = 0
             return to_pay
 
+class PremiumEmployee(Employee):
+        def __init__(self,name,last_name,rate_per_hour):
+            super().__init__(name,last_name,rate_per_hour)
+
+        def give_bonus(self,bonus):
+            total = self.pay_salary() + bonus
+            return total
+
+
+
 
 class TestEmployee:
-
 
     def test_init(self):
         employee = Employee("Jan", "Nowak", 100.0)
@@ -42,3 +51,23 @@ class TestEmployee:
         employee = Employee("Jan", "Nowak", 100.0)
         employee.register_time(10)
         assert employee.pay_salary() == 1200
+
+class TestPremiumEmployee:
+    # employee.register_time(5)
+    # employee.give_bonus(1000.0)
+    # employee.pay_salary()
+    def test_init(self):
+        employee = PremiumEmployee('Jan', 'Nowak', 100.0)
+        assert employee
+        assert employee.name == "Jan"
+        assert employee.last_name == "Nowak"
+        assert employee.rate_per_hour == 100.0
+    def test_register_time(self):
+        employee = Employee("Jan", "Nowak", 100.0)
+        employee.register_time(5)
+        assert employee.registered_time == 5
+    def test_give_bonus(self):
+        employee = PremiumEmployee("Jan", "Nowak", 100.0)
+        employee.register_time(5)
+        employee.give_bonus(1000)
+        employee.pay_salary() == 1500
