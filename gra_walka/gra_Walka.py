@@ -2,29 +2,36 @@ class Postac:
 
     def _init_(self, imie, atak, obrona, energia):
         self.imie = imie
-        self.atak = atak
+        self._atak = atak
         self.obrona = obrona
         self.energia = energia
         self.ekwipunek = []
 
+
     @property
     def atak(self):
         # "wylicza moc ataku"
-        self.atak += self.bonus_atk
+        a = self._atak
+        for przedmiot in self.ekwipunek:
+            a += przedmiot.bonus_atk
+        return a
+
 
     def __str__(self):
-        return print(f"Jestem {self.imie} mam {self.atak} ataku i {self.energia} życia\n Ekwipunek: {self.ekwipunek}")
+        if self.czy_zyje():
+            return print(f"Jestem {self.imie} mam {self.atak} ataku i {self.energia} życia\n Ekwipunek: {self.ekwipunek}")
+        return print("Nie zyje")
 
     def wylecz(self, ile):
         # "Leczy - ale tylko żywe postaci - sprawdź czy_zyje()"
         if self.czy_zyje() == True:
-            self.energia += self.ile
+            self.energia += ile
             return self.energia
 
 
     def otrzymaj_obrazenia(self, ile):
         # "Ile obrażeń - zależne od siły ataku i mocy obrony"
-        self.ile = self.atakujacy.moc_ataku() - self.broniacy.obrona
+        self.energia -= ile
 
     def czy_zyje(self):
         return self.energia > 0
@@ -49,58 +56,20 @@ class Postac:
                 atakujacy.__str__()
                 broniacy.__str__()
 
+    @atak.setter
+    def atak(self, value):
+        self._atak = value
 
 
+class Przedmiot():
 
-
-
-class Przedmiot:
-
-    def __init__(self, nazwa, bonus_atk, polozenie):
+    def __init__(self, nazwa, bonus_atk):
         self.nazwa = nazwa
         self.bonus_atk = bonus_atk
-        self.polozenie = (self.x, self.y)
+        # self.polozenie = (self.x, self.y)
 
     def __str__(self):
         return f"{self.nazwa}, {self.bonus_atk} do ataku"
-
-class Polozenie:
-
-    def __init__(self,x, y, zasieg_x=10, zasieg_y=10):
-        self.x = x
-        self.y = y
-        self.zasieg_x = zasieg_x
-        self.zasieg_y = zasieg_y
-
-    def __eq__(self, other):
-        #"Sprawdza czy polozenia takie same"
-        if self.x == other.x and self.y == other.y:
-            return print("Położenia graczy są takie same")
-        else:
-            return print("Gracze znajdują się w różnych miejscach na planszy")
-
-    def g(self):
-        #"Ruch w górę"
-        g = input("O ile pól w górę przesunać? ")
-        return self.y + g
-
-    def d(self):
-        #"Ruch w dół"
-        d = input("O ile pól w dół przesunać? ")
-        return self.y - d
-
-    def l(self):
-        #"Ruch w lewo"
-        l = input("O ile pól w lewo przesunać? ")
-        return self.x - l
-
-    def p(self):
-        #"ruch w prawo"
-        p = input("O ile pól w prawo przesunać? ")
-        return self.x + p
-
-    def __str__(self):
-        return f"Twoja pozycja to: x={self.x}, y={self.y}"
 
 class Plansza:
 
@@ -131,6 +100,40 @@ class Plansza:
         while True:
             self.ruch()
 
+
+class Polozenie(Postac):
+
+    def __init__(self, x, y, plansza: Plansza):
+        self.x = x
+        self.y = y
+
+    def __eq__(self, other):
+        # "Sprawdza czy polozenia takie same"
+        return self.x == other.x and self.y == other.y
+
+    def g(self):
+        # "Ruch w górę"
+        g = input("O ile pól w górę przesunać? ")
+        return self.y + g
+
+    def d(self):
+        # "Ruch w dół"
+        d = input("O ile pól w dół przesunać? ")
+        return self.y - d
+
+    def l(self):
+        # "Ruch w lewo"
+        l = input("O ile pól w lewo przesunać? ")
+        return self.x - l
+
+    def p(self):
+        # "ruch w prawo"
+        p = input("O ile pól w prawo przesunać? ")
+        return self.x + p
+
+    def __str__(self):
+        return f"Twoja pozycja to: x={self.x}, y={self.y}"
+
 class TestPlansza:
 
     def test_init(self):
@@ -157,21 +160,28 @@ class TestPostac:
         bomber = Postac()
         bomber.imie = "Bomber"
         bomber.ekwipunek = []
-        bomber.atak = 20
-        assert bomber.atak == 20
 
+
+        bomber.atak = 50
+        assert bomber.atak == 50
         assert bomber
         assert bomber.imie == "Bomber"
         assert bomber.ekwipunek == []
 
     def test_str(self):
         bomber = Postac()
-
         bomber.imie = "Bomber"
         bomber.ekwipunek = "Magiczny kij"
         bomber.atak = 20
         bomber.energia = 100
         assert bomber.__str__() == print("Jestem Bomber mam 20 ataku i 100 życia\nEkwipunek: Magiczny kij")
+    def test_atak(self):
+        bomber = Postac()
+        bomber.imie = "Bomber"
+        bomber.ekwipunek = "Magiczny kij"
+        bomber.atak = 20
+        bomber.energia = 100
+        assert bomber.atak == 20
 
     def test_czy_zyje(self):
 
@@ -200,7 +210,7 @@ class TestyPolozenie:
     def test_eq(self):
         polozenie1 = Polozenie(10, 3, 10, 10)
         polozenie2 = Polozenie(5,4,10,10)
-        assert polozenie1.__eq__(polozenie2) == print("Gracze znajdują się w różnych miejscach na planszy")
+        assert polozenie1.__eq__(polozenie2) == False
     def test_str(self):
         polozenie1 = Polozenie(10, 3, 10, 10)
         assert polozenie1.__str__() == "Twoja pozycja to: x=10, y=3"

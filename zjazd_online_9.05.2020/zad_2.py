@@ -20,12 +20,18 @@ class Employee:
             return to_pay
 
 class PremiumEmployee(Employee):
-        def __init__(self,name,last_name,rate_per_hour):
-            super().__init__(name,last_name,rate_per_hour)
+        def __init__(self,first_name, last_name, rate_per_hour):
+            super().__init__(first_name, last_name, rate_per_hour)
+            self.bonus = 0
 
-        def give_bonus(self,bonus):
-            total = self.pay_salary() + bonus
-            return total
+        def give_bonus(self,amount):
+            self.bonus += amount
+
+        def pay_salary(self):
+            to_pay = super().pay_salary()
+            to_pay += self.bonus
+            self.bonus = 0
+            return to_pay
 
 
 
@@ -70,4 +76,5 @@ class TestPremiumEmployee:
         employee = PremiumEmployee("Jan", "Nowak", 100.0)
         employee.register_time(5)
         employee.give_bonus(1000)
-        employee.pay_salary() == 1500
+        assert employee.pay_salary() == 1500
+        assert employee.pay_salary() == 0

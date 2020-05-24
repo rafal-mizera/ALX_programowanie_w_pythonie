@@ -1,15 +1,15 @@
 class ElectricCar:
     def __init__(self,max_range):
         self.max_range = max_range
-        self.traveled_distance = 0
+        self._traveled_distance = 0
 
     def drive(self, distance):
-        if distance + self.traveled_distance <= self.max_range:
-            self.traveled_distance += distance
+        if distance + self._traveled_distance <= self.max_range:
+            self._traveled_distance += distance
             return distance
         else:
-            to_travel = self.max_range - self.traveled_distance
-            self.traveled_distance = self.max_range
+            to_travel = self.max_range - self._traveled_distance
+            self._traveled_distance = self.max_range
             return to_travel
     def charge(self):
         self.max_range += self.max_range
